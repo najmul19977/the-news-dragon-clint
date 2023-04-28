@@ -5,7 +5,12 @@ import { FaUserAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 const NevigationBar = () => {
-    const { user } = useContext(AuthContext);
+    const { user,logOut } = useContext(AuthContext);
+    const handleLogOut = ()=>{
+        logOut()
+        .then()
+        .catch(error => console.log(error));
+    }
     return (
         <Container>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className='mt-2'>
@@ -24,7 +29,7 @@ const NevigationBar = () => {
                                 <FaUserAlt style={{ fontSize: '2rem' }} />}
 
                             {user ?
-                                <Button variant="secondary">LogOut</Button> :
+                                <Button onClick={handleLogOut} variant="secondary">LogOut</Button> :
                                 <Link to="/login">
                                     <Button variant="secondary">Login</Button>
                                 </Link>
